@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..';
+               sh 'git clone https://github.com/jenkins-docs/simple-java-maven-app.git .'
+                sh 'mvn -B -DskipTests  clean package ' 
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..';
+                sh 'mvn test'
+            }
+        }
